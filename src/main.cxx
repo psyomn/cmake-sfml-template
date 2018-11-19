@@ -1,30 +1,23 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+#include "common.hxx"
+
 using std::cout;
 using std::endl;
 
 int main(void) {
-  cout << "HI" << endl;
-  sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
+  auto dim = Common::RetroDimentions();
+  sf::RenderWindow window(sf::VideoMode(dim.x, dim.y), "game-template");
 
   while (window.isOpen()) {
-      // Process events
-      sf::Event event;
-      while (window.pollEvent(event))
-        {
-          // Close window: exit
-          if (event.type == sf::Event::Closed)
-            window.close();
-        }
-      // Clear screen
-      window.clear();
-      // Draw the sprite
-      // window.draw(sprite);
-      // Draw the string
-      // window.draw(text);
-      // Update the window
-      window.display();
+    sf::Event event;
+    while (window.pollEvent(event)) {
+      if (event.type == sf::Event::Closed)
+        window.close();
+    }
+    window.clear();
+    window.display();
   }
 
   return 0;
